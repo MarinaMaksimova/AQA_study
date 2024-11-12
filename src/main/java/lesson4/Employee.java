@@ -6,12 +6,14 @@ package lesson4;
 консоль.*/
 
 public class Employee {
-    private String fullName, position, email;
+    private String firstName, lastName, position, email;
     private long phoneNumber;
-    private int salary, age;
+    private double salary;
+    private int age;
 
-    public Employee(String fullName, String position, String email, long phoneNumber, int salary, int age) {
-        this.fullName = fullName;
+    public Employee(String firstName, String lastName, String position, String email, long phoneNumber, double salary, int age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.position = position;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -20,7 +22,8 @@ public class Employee {
     }
 
     public void printEmployeeInfo() {
-        System.out.println("ФИО: " + fullName);
+        System.out.println("Фамилия: " + firstName);
+        System.out.println("Имя: " + lastName);
         System.out.println("Должность: " + position);
         System.out.println("Email: " + email);
         System.out.println("Телефон: " + phoneNumber);
