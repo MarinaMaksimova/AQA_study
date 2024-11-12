@@ -1,8 +1,8 @@
 package lesson5;
 
 public class Rectangle implements Figures {
-    public double sideA, sideB;
-    public String colorFill, colorBorder;
+    private double sideA, sideB;
+    private String colorFill, colorBorder;
 
     public Rectangle(double sideA, double sideB, String colorFill, String colorBorder) {            // конструктор
         this.sideA = sideA;
@@ -11,18 +11,20 @@ public class Rectangle implements Figures {
         this.colorBorder = colorBorder;
     }
 
-    public double getSideA() {          // получение первой стороны прямоугольника
-        return sideA;
-    }
-
-    public double getSideB() {          // получение второй стороны прямоугольника
-        return sideB;
+    @Override
+    public double calculatedPerimeter() {           // переопределение метода расчета периметра для прямоугольника
+        return 2 * (sideA + sideB);
     }
 
     @Override
-    public void showInfo() {            // переопределение метода выводы информации для прямоугольника
-        System.out.println("Площадь прямоугольника: " + calculatedSquare(sideA, sideB));
-        System.out.println("Периметр прямоугольника: " + calculatedPerimeter(sideA, sideB));
+    public double calculatedSquare() {           // переопределение метода расчета площади для прямоугольника
+        return sideA * sideB;
+    }
+
+    @Override
+    public void showInfo() {            // переопределение метода вывода информации для прямоугольника
+        System.out.println("Площадь прямоугольника: " + calculatedSquare());
+        System.out.println("Периметр прямоугольника: " + calculatedPerimeter());
         System.out.println("Цвет фона прямоугольника: " + colorFill);
         System.out.println("Цвет границ прямоугольника: " + colorBorder + "\n");
     }
