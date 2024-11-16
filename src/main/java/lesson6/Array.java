@@ -9,18 +9,6 @@ import java.util.Random;
 MyArrayDataException с детализацией, в какой именно ячейке лежат неверные данные.
 3. В методе main() вызвать полученный метод, обработать возможные исключения MyArray SizeException и MyArrayDataException и
 вывести результат расчета.*/
-class MyArraySizeException extends Exception {
-    public MyArraySizeException(String message) {
-        super(message);
-    }
-}
-
-class MyArrayDataException extends Exception {
-    public MyArrayDataException(String message) {
-        super(message);
-    }
-}
-
 public class Array {
     public String[][] array;
     private int[][] arrayInt;
@@ -40,7 +28,7 @@ public class Array {
         }
     }
 
-    public void fillArrayWithSymbols() {           // метод случайного заполнения массива, где строки станут впоследствии буквами
+    public void fillArrayWithSymbols() {           // метод случайного заполнения массива, где строки станут впоследствии буквами или цифрами
         Random random = new Random();
         String symbols = "абвгдеёжзи0123456789";
         for (int i = 0; i < array.length; i++) {
@@ -53,7 +41,7 @@ public class Array {
 
     public void findSumOfArray(String[][] arr) throws MyArraySizeException, MyArrayDataException {         // тот самый нужный нам метод из задания
         if (arr.length != 4 || arr[0].length != 4) {
-            throw new MyArraySizeException("Размер массива должен быть 4 на 4");
+            throw new MyArraySizeException("Размер массива должен быть 4 на 4, текущий массив имеет размер " + arr.length + " на " + arr[0].length);
         }
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
@@ -65,6 +53,7 @@ public class Array {
                 }
             }
         }
+        System.out.println("Сумма всех элементов в массиве: " + sumOfArray);
     }
 
     public void showArray() {           // вывод массива в консоль
@@ -74,7 +63,6 @@ public class Array {
             }
             System.out.println();
         }
-        System.out.println("Сумма всех элементов в массиве: " + sumOfArray);
     }
 
 
