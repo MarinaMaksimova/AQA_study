@@ -1,6 +1,7 @@
 package lesson6;
 
 import java.util.Random;
+import java.util.Arrays;
 
 /*1. Напишите метод, на вход которого подается двумерный строковый массив размером 4х4. При подаче массива другого размера
 необходимо бросить исключение MyArray SizeException.
@@ -9,12 +10,12 @@ import java.util.Random;
 MyArrayDataException с детализацией, в какой именно ячейке лежат неверные данные.
 3. В методе main() вызвать полученный метод, обработать возможные исключения MyArray SizeException и MyArrayDataException и
 вывести результат расчета.*/
-public class Array {
+public class MultiDimensionalArray {
     public String[][] array;
     private int[][] arrayInt;
     private int sumOfArray;
 
-    public Array(int rows, int columns) {           // конструктор класса
+    public MultiDimensionalArray(int rows, int columns) {           // конструктор класса
         array = new String[rows][columns];
         arrayInt = new int[rows][columns];
     }
@@ -26,6 +27,27 @@ public class Array {
                 array[i][j] = Integer.toString((int) (Math.random() * 9));
             }
         }
+    }
+
+    public void fillArray() {           // заполняем массив 4 на 4, в 3 строке всего 2 элемента
+        array[0][0] = String.valueOf(1);
+        array[0][1] = String.valueOf(2);
+        array[0][2] = String.valueOf(3);
+        array[0][3] = String.valueOf(4);
+
+        array[1][0] = String.valueOf(5);
+        array[1][1] = String.valueOf(6);
+        array[1][2] = String.valueOf(7);
+        array[1][3] = String.valueOf(8);
+
+        array[2][0] = String.valueOf(9);
+        array[2][1] = String.valueOf(10);
+        array[2][2] = String.valueOf(11);
+
+        array[3][0] = String.valueOf(12);
+        array[3][1] = String.valueOf(13);
+        array[3][2] = String.valueOf(14);
+        array[3][3] = String.valueOf(15);
     }
 
     public void fillArrayWithSymbols() {           // метод случайного заполнения массива, где строки станут впоследствии буквами или цифрами
@@ -56,14 +78,11 @@ public class Array {
         System.out.println("Сумма всех элементов в массиве: " + sumOfArray);
     }
 
-    public void showArray() {           // вывод массива в консоль
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                System.out.print(array[i][j] + " ");
-            }
-            System.out.println();
-        }
+    public void showArray() {           // вывод двумерного массива в консоль
+//        for (int i = 0; i < array.length; i++) {
+//            System.out.println(Arrays.toString(array[i]));
+//        }
+        System.out.println(Arrays.deepToString(array));
     }
-
 
 }
