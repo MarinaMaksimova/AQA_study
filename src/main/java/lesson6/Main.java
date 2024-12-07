@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         // массив с размером 4 на 4 и числовыми данными
         System.out.println("Массив с размером 4 на 4 и числовыми данными:");
-        Array arr = new Array(4, 4);
+        MultiDimensionalArray arr = new MultiDimensionalArray(4, 4);
         arr.fillArrayWithNumbers(); // заполнение массива строковыми символами, которые корректно конвертируются в Int
         try {
             arr.findSumOfArray(arr.array);
@@ -22,7 +22,7 @@ public class Main {
 
         // массив с размером 4 на 4 и символьно-числовыми данными
         System.out.println("\nМассив с размером 4 на 4 и символьно-числовыми данными:");
-        Array arr1 = new Array(4, 4);
+        MultiDimensionalArray arr1 = new MultiDimensionalArray(4, 4);
         arr1.fillArrayWithSymbols(); // заполнение массива строковыми символами, которые НЕкорректно конвертируются в Int
         try {
             arr1.findSumOfArray(arr1.array);
@@ -34,7 +34,7 @@ public class Main {
 
         // массив с размером 4 на 4 и символьно-числовыми данными
         System.out.println("\nМассив с размером НЕ 4 на 4 и c числовыми данными:");
-        Array arr2 = new Array(3, 5);
+        MultiDimensionalArray arr2 = new MultiDimensionalArray(3, 5);
         arr2.fillArrayWithNumbers(); // заполнение массива строковыми символами, которые корректно конвертируются в Int
         try {
             arr2.findSumOfArray(arr2.array);
@@ -44,6 +44,16 @@ public class Main {
             arr2.showArray();
         }
 
+        // массив с размером 4 на 4 и числовыми данными
+        System.out.println("\nМассив с размером 4 на 4 и числовыми данными, но в строке 3 не 4 элемента:");
+        MultiDimensionalArray arr3 = new MultiDimensionalArray(4, 4);
+        arr3.fillArray();
+        arr3.showArray();
+        try {
+            arr3.findSumOfArray(arr3.array);
+        } catch (MyArraySizeException | MyArrayDataException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }

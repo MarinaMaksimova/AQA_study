@@ -1,6 +1,6 @@
 package lesson6;
 
-public class MyArrayDataException extends RuntimeException {
+public class MyArrayDataException extends Exception {
     public MyArrayDataException(String message) {
         super(message);
     }
