@@ -2,15 +2,11 @@ package Lesson_14_testng;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import java.math.BigInteger;
-
 import static org.testng.Assert.*;
 
 public class FactorialTest {
 
-    //@DisplayName("Проверка на расчет факториала")
-    //@ParameterizedTest
     @DataProvider(name = "numbers")
     public static Object[][] evenNumbers() {
         return new Object[][]{
@@ -20,13 +16,13 @@ public class FactorialTest {
                 {1, BigInteger.ONE},
         };
     }
-    @Test(dataProvider = "numbers")
+    @Test(dataProvider = "numbers", description = "Проверка на расчет факториала")
     void testFactorial(int actual, BigInteger expected) {
         Factorial factorial = new Factorial();
         assertEquals(expected, factorial.factorial(actual));
     }
 
-    @Test
+    @Test(description = "Проверка на отрицательное число")
     void testFactorialIsNotNegative() {
         Factorial factorial = new Factorial();
         assertThrows(IllegalArgumentException.class, () -> {
@@ -34,7 +30,7 @@ public class FactorialTest {
         });
     }
 
-    @Test
+    @Test(description = "Проверка на null")
     void testFactorialIsNotNull(){
         Factorial factorial = new Factorial();
         assertNotNull(factorial.factorial(46));
