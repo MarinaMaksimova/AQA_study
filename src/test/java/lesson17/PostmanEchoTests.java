@@ -5,6 +5,7 @@ package lesson17;
 сравнить значения всех полей) и кода ответа).*/
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -24,14 +25,13 @@ public class PostmanEchoTests {
     @BeforeAll                                          // Настройка базовой конфигурации RestAssured
     public static void configureRestAssured() {
         baseURI = url;
-        requestSpecification = given ()
+        requestSpecification = given()
                 .header("accept-encoding", acceptEncoding);
-
     }
 
     @Test                                               // Тест GET-запроса из Postman Echo
+    @DisplayName("Тест GET-запроса из Postman Echo")
     public void getRequestTest() {
-
         given()
                 .contentType("application/json")
         .when()
@@ -52,18 +52,18 @@ public class PostmanEchoTests {
                 .body("headers.accept-encoding", equalTo(acceptEncoding))
                 .body("headers.cookie", equalTo(null))
                 .body("url", equalTo(url + "/get?foo1=bar1&foo2=bar2"))
-         .statusCode(200);
+        .statusCode(200);
     }
 
     @Test                                               // Тест POST-запроса Raw Text из Postman Echo
+    @DisplayName("Тест POST-запроса Raw Text из Postman Echo")
     public void postRawTextTest() {
-
         given()
                 .contentType("text/plain")
                 .body("This is expected to be sent back as part of response body.")
         .when()
                 .post("/post")
-         .then().log().body().assertThat()
+        .then().log().body().assertThat()
                 .body("args", equalTo(Map.of()))
                 .body("data", equalTo("This is expected to be sent back as part of response body."))
                 .body("files", equalTo(Map.of()))
@@ -83,12 +83,12 @@ public class PostmanEchoTests {
                 .body("headers.cookie", equalTo(null))
                 .body("json", equalTo(null))
                 .body("url", equalTo(url + "/post"))
-         .statusCode(200);
+        .statusCode(200);
     }
 
     @Test                                               // Тест POST-запроса From Data из Postman Echo
+    @DisplayName("Тест POST-запроса From Data из Postman Echo")
     public void postFromDataTest() {
-
         given()
                 .contentType("application/x-www-form-urlencoded; charset=utf-8")
                 .formParam("foo1", "bar1")
@@ -119,8 +119,8 @@ public class PostmanEchoTests {
     }
 
     @Test                                               // Тест PUT-запроса из Postman Echo
+    @DisplayName("Тест PUT-запроса из Postman Echo")
     public void putTest() {
-
         given()
                 .contentType("text/plain")
                 .body("This is expected to be sent back as part of response body.")
@@ -150,8 +150,8 @@ public class PostmanEchoTests {
     }
 
     @Test                                               // Тест PATCH-запроса из Postman Echo
+    @DisplayName("Тест PATCH-запроса из Postman Echo")
     public void patchTest() {
-
         given()
                 .contentType("text/plain")
                 .body("This is expected to be sent back as part of response body.")
@@ -181,8 +181,8 @@ public class PostmanEchoTests {
     }
 
     @Test                                               // Тест DELETE-запроса из Postman Echo
+    @DisplayName("Тест DELETE-запроса из Postman Echo")
     public void deleteTest() {
-
         given()
                 .contentType("text/plain")
                 .body("This is expected to be sent back as part of response body.")
@@ -210,5 +210,4 @@ public class PostmanEchoTests {
                 .body("url", equalTo(url + "/delete"))
         .statusCode(200);
     }
-
 }
