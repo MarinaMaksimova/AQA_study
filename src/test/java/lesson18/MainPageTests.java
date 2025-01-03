@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /*Необходимо взять тест из практического задания в теме
 “Selenium. Часть 2” и добавить Allure-репорт.*/
 @Owner("Максимова М.Е.")
+@Epic("Тесты МТС")
 public class MainPageTests {
 
     private MainPage mainPage;
@@ -30,10 +31,9 @@ public class MainPageTests {
         mainPage.cookieCancel();  // отклонить куки
     }
 
-    @Epic("Тесты МТС")
+    @Test// Проверить название указанного блока
     @Feature("Главная страница")
     @Story("Проверка надписей")
-    @Test// Проверить название указанного блока
     @DisplayName("Проверка названия указанного блока")
     @Description("Сравнение названия заголовка блока")
     @Link(name = "MTS", url = "https://www.mts.by/")
@@ -41,10 +41,9 @@ public class MainPageTests {
         assertEquals("Онлайн пополнение без комиссии", mainPage.getPaymentBlockTitle());
     }
 
-    @Epic("Тесты МТС")
+    @Test           // Проверить наличие логотипов платежных систем
     @Feature("Главная страница")
     @Story("Проверка логотипов")
-    @Test           // Проверить наличие логотипов платежных систем
     @DisplayName("Проверка наличия логотипов платежных систем")
     @Description("Создание списка из названий платежных систем. Вызов метода getPaymentLogos(). Сравнение полученного результата после выхова метода со списком")
     @Link(name = "MTS", url = "https://www.mts.by/")
@@ -54,10 +53,9 @@ public class MainPageTests {
         assertEquals(expectedTexts, actualTexts);
     }
 
-    @Epic("Тесты МТС")
+    @Test           // Проверить работу ссылки «Подробнее о сервисе»
     @Feature("Главная страница")
     @Story("Проверка ссылки")
-    @Test           // Проверить работу ссылки «Подробнее о сервисе»
     @DisplayName("Проверка работы ссылки «Подробнее о сервисе»")
     @Description("Проверка перехода по ссылке")
     @Link(name = "MTS", url = "https://www.mts.by/")
@@ -65,10 +63,9 @@ public class MainPageTests {
         assertTrue(mainPage.clickPaymentBlockFAQ());
     }
 
-    @Epic("Тесты МТС")
+    @Test           // Заполнить поля и проверить работу кнопки «Продолжить» (проверяем только вариант «Услуги связи», номер для теста 297777777)
     @Feature("Главная страница")
     @Story("Проверка кнопки")
-    @Test           // Заполнить поля и проверить работу кнопки «Продолжить» (проверяем только вариант «Услуги связи», номер для теста 297777777)
     @DisplayName("Проверка работы кнопки «Продолжить»")
     @Description("Вызов метода completeOnlinePayment(), с заданными параметрами: номер телефона - 297777777, сумма оплаты - 12. Проверка перехода после нажатия на кнопку \"Продолжить\"")
     @Link(name = "MTS", url = "https://www.mts.by/")
@@ -77,10 +74,9 @@ public class MainPageTests {
         assertTrue(mainPage.isPaymentCreditCardFormDisplayed());
     }
 
-    @Epic("Тесты МТС")
+    @Test           // Проверить надписи в незаполненных полях каждого варианта оплаты услуг: услуги связи, домашний интернет, рассрочка, задолженность;
     @Feature("Фрейм")
     @Story("Проверка надписей")
-    @Test           // Проверить надписи в незаполненных полях каждого варианта оплаты услуг: услуги связи, домашний интернет, рассрочка, задолженность;
     @DisplayName("Проверка надписей в незаполненных полях")
     @Description("Сравнение названий плейсхолдеров")
     @Link(name = "MTS", url = "https://www.mts.by/")
@@ -103,11 +99,9 @@ public class MainPageTests {
         assertEquals("E-mail для отправки чека",  mainPage.getArrearsEmail());
     }
 
-
-    @Epic("Тесты МТС")
+    @Test
     @Feature("Фрейм")
     @Stories({@Story("Проверка надписей"),@Story("Проверка логотипов")})
-    @Test
     @DisplayName("Проверка корректности отображения суммы, номера телефона, надписей в полях реквизитов и иконок на фрейме")
     @Description("Вызов метода completeOnlinePayment(), с заданными параметрами: номер телефона - 297777777, сумма оплаты - 12. Проверка корректности отображения суммы, номера телефона, а также надписей в полях ввода, наличие иконок")
     @Link(name = "MTS", url = "https://www.mts.by/")
