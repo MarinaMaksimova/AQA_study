@@ -1,7 +1,6 @@
 package lesson18;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,8 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /*Необходимо взять тест из практического задания в теме
 “Selenium. Часть 2” и добавить Allure-репорт.*/
-
-@Epic("Тесты МТС")
+@Owner("Максимова М.Е.")
 public class MainPageTests {
 
     private MainPage mainPage;
@@ -32,40 +30,60 @@ public class MainPageTests {
         mainPage.cookieCancel();  // отклонить куки
     }
 
+    @Epic("Тесты МТС")
+    @Feature("Главная страница")
+    @Story("Проверка надписей")
     @Test// Проверить название указанного блока
     @DisplayName("Проверка названия указанного блока")
     @Description("Сравнение названия заголовка блока")
+    @Link(name = "MTS", url = "https://www.mts.by/")
     public void verifyBlockName() {
         assertEquals("Онлайн пополнение без комиссии", mainPage.getPaymentBlockTitle());
     }
 
+    @Epic("Тесты МТС")
+    @Feature("Главная страница")
+    @Story("Проверка логотипов")
     @Test           // Проверить наличие логотипов платежных систем
     @DisplayName("Проверка наличия логотипов платежных систем")
     @Description("Создание списка из названий платежных систем. Вызов метода getPaymentLogos(). Сравнение полученного результата после выхова метода со списком")
+    @Link(name = "MTS", url = "https://www.mts.by/")
     public void verifyPaymentSystemsLogos() {
         List<String> expectedTexts = List.of("Visa", "Verified By Visa", "MasterCard", "MasterCard Secure Code", "Белкарт");
         List<String> actualTexts = mainPage.getPaymentLogos();
         assertEquals(expectedTexts, actualTexts);
     }
 
+    @Epic("Тесты МТС")
+    @Feature("Главная страница")
+    @Story("Проверка ссылки")
     @Test           // Проверить работу ссылки «Подробнее о сервисе»
     @DisplayName("Проверка работы ссылки «Подробнее о сервисе»")
     @Description("Проверка перехода по ссылке")
+    @Link(name = "MTS", url = "https://www.mts.by/")
     public void verifyServiceLink() {
         assertTrue(mainPage.clickPaymentBlockFAQ());
     }
 
+    @Epic("Тесты МТС")
+    @Feature("Главная страница")
+    @Story("Проверка кнопки")
     @Test           // Заполнить поля и проверить работу кнопки «Продолжить» (проверяем только вариант «Услуги связи», номер для теста 297777777)
     @DisplayName("Проверка работы кнопки «Продолжить»")
     @Description("Вызов метода completeOnlinePayment(), с заданными параметрами: номер телефона - 297777777, сумма оплаты - 12. Проверка перехода после нажатия на кнопку \"Продолжить\"")
+    @Link(name = "MTS", url = "https://www.mts.by/")
     public void verifyContinue() {
         mainPage.completeOnlinePayment("297777777", "12");
         assertTrue(mainPage.isPaymentCreditCardFormDisplayed());
     }
 
+    @Epic("Тесты МТС")
+    @Feature("Фрейм")
+    @Story("Проверка надписей")
     @Test           // Проверить надписи в незаполненных полях каждого варианта оплаты услуг: услуги связи, домашний интернет, рассрочка, задолженность;
     @DisplayName("Проверка надписей в незаполненных полях")
     @Description("Сравнение названий плейсхолдеров")
+    @Link(name = "MTS", url = "https://www.mts.by/")
     public void verifyDefaultText() {
         //Услуги связи
         assertEquals("Номер телефона",  mainPage.getConnectionPhone());
@@ -85,9 +103,14 @@ public class MainPageTests {
         assertEquals("E-mail для отправки чека",  mainPage.getArrearsEmail());
     }
 
+
+    @Epic("Тесты МТС")
+    @Feature("Фрейм")
+    @Stories({@Story("Проверка надписей"),@Story("Проверка логотипов")})
     @Test
     @DisplayName("Проверка корректности отображения суммы, номера телефона, надписей в полях реквизитов и иконок на фрейме")
     @Description("Вызов метода completeOnlinePayment(), с заданными параметрами: номер телефона - 297777777, сумма оплаты - 12. Проверка корректности отображения суммы, номера телефона, а также надписей в полях ввода, наличие иконок")
+    @Link(name = "MTS", url = "https://www.mts.by/")
     //Для варианта «Услуги связи» заполнить поля в соответствии с пререквизитами из предыдущей темы, нажать кнопку «Продолжить» и
     // в появившемся окне проверить корректность отображения суммы (в том числе на кнопке), номера телефона, а также надписей в
     // незаполненных полях для ввода реквизитов карты, наличие иконок платежных систем.
